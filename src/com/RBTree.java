@@ -91,6 +91,11 @@ public class RBTree<Key extends Comparable<Key>,Value> {
         return node;
     }
 
+    /**
+     * Get by key
+     * @param key
+     * @return string
+     */
     public String get(Key key){
         Node node = get(key, root);
         return node == null ? "Null" : node.key + ":" +node.value;
@@ -112,6 +117,10 @@ public class RBTree<Key extends Comparable<Key>,Value> {
         }
     }
 
+    /**
+     * Put the node in RBTree
+     * @param key value
+     */
     public void put(Key key, Value value){
         root = put(key,value,root);
         root.color = BLACK;
@@ -134,6 +143,36 @@ public class RBTree<Key extends Comparable<Key>,Value> {
                 node.value = value;
             }
             return balance(node);
+        }
+    }
+
+    /**
+     * Delete By Key
+     * @param key
+     */
+    public void delete(Key key){
+        if(!isEmpty()){
+            root.color = RED;
+            root = delete(key, root);
+            if(!isEmpty()){
+                root.color = BLACK;
+            }
+        }
+    }
+
+    private Node delete(Key key, Node node){
+        if(node == null)
+            return null;
+
+        int cmp = key.compareTo(node.key);
+        if(cmp > 0){
+
+        }
+        else if(cmp < 0){
+
+        }
+        else{
+
         }
     }
 

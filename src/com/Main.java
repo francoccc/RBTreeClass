@@ -8,5 +8,7 @@ public class Main {
         rbTree.inTraversal();
         System.out.println("Get:" + rbTree.get("0010"));
         System.out.println("Get:" + rbTree.get("0001"));
+        System.out.println("Size:" + rbTree.getSize());
+        System.out.print("Min:"+ rbTree.min());
     }
 }
