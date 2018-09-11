@@ -35,7 +35,7 @@ public class RBTree<Key extends Comparable<Key>,Value> {
      * flip parent, left, right color
      * @param node
      */
-    private void flipColor(Node node){
+    private void flipColors(Node node){
         node.color = !node.color;
         node.left.color = !node.left.color;
         node.right.color = !node.right.color;
@@ -61,10 +61,17 @@ public class RBTree<Key extends Comparable<Key>,Value> {
 
     private Node balance(Node node){
         if(isRed(node.left) && isRed(node.right) && !isRed(node)){
-
+            if(isRed(node.left.left) || isRed(node.left.right) || isRed(node.right.left) || isRed(node.right.right)){
+                flipColors(node);
+            }
         }
         else{
 
+            if(isRed(node.left) && isRed(node.right) && !isRed(node)){
+                if(isRed(node.left.left) || isRed(node.left.right) || isRed(node.right.left) || isRed(node.right.right)){
+                    flipColors(node);
+                }
+            }
         }
         return node;
     }
