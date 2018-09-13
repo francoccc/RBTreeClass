@@ -78,7 +78,7 @@ public class RBTree<Key extends Comparable<Key>,Value> {
                 if(isRed(node.left.right)){
                     node = leftRotation(node.left);
                 }
-                if(isRed(node.left.right)){
+                if(isRed(node.left.left)){
                     node = rightRotation(node);
                 }
             }
@@ -101,6 +101,9 @@ public class RBTree<Key extends Comparable<Key>,Value> {
         return node == null ? "Null" : node.key + ":" +node.value;
     }
 
+    public String getRoot(){
+        return get(root.key);
+    }
     private Node get(Key key, Node node){
         if(node == null){
             return null;
@@ -129,7 +132,7 @@ public class RBTree<Key extends Comparable<Key>,Value> {
     private Node put(Key key, Value value, Node node){
         if(node == null){
             size++;
-            return new Node(key,value,null,null,RED);
+            return new Node(key, value, null, null, RED);
         }
         else{
             int cmp = key.compareTo(node.key);
@@ -174,6 +177,7 @@ public class RBTree<Key extends Comparable<Key>,Value> {
         else{
 
         }
+        return balance(node);
     }
 
     private Node max(Node node){
@@ -259,7 +263,7 @@ public class RBTree<Key extends Comparable<Key>,Value> {
 
     private void inTraversal(Node node){
         if(node.left != null) inTraversal(node.left);
-        System.out.println(node.key + ":" + node.value);
+        System.out.println(node.key + ":" + node.value + " " + "color:" + node.color);
         if(node.right != null) inTraversal(node.right);
     }
 }
